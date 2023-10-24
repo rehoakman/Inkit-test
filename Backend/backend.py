@@ -9,8 +9,8 @@ import uuid
 
 
 app = FastAPI()
-#to ensure CORS error doesnt happen again
-#this is where the frotnend is coming from
+#to ensure CORS error doesn't happen again
+#this is where the frontend is coming from
 ports = [
     "http://localhost:5000"
 ]
@@ -26,13 +26,13 @@ app.add_middleware(
 
 
 """
-The returned json/dict is the data strcut
+The returned json/dict is the data struct
 you need already. Now you need to modify what it returns
 """
 @app.get("/")
 async def root():
     uuid = random_uuid()
-    cur_time,future_time = get_time()
+    cur_time,future_time = get_times()
     data = {   
             "uuid": str(uuid),
             "document_name": "My important document",
@@ -51,7 +51,7 @@ def random_uuid():
     return id
 
 
-def get_time():
+def get_times():
     cur_time = datetime.utcnow()
     time_str = cur_time.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     #incrementing by one month
